@@ -6,9 +6,11 @@ use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
+
 /** @var yii\web\View $this */
 /** @var app\models\IntensiveSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
+/** @var array $thematics */
 
 $this->title = 'Intensives';
 $this->params['breadcrumbs'][] = $this->title;
@@ -22,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
 
     <?php Pjax::begin(); ?>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php echo $this->render('_search', ['model' => $searchModel, 'thematics' => $thematics]); ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -32,13 +34,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'name',
-            'decription:ntext',
+            'description:ntext',
             'lector_id',
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Intensive $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
-                 }
+                }
             ],
         ],
     ]); ?>

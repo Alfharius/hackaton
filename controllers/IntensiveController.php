@@ -4,6 +4,8 @@ namespace app\controllers;
 
 use app\models\Intensive;
 use app\models\IntensiveSearch;
+use app\models\Thematics;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -41,10 +43,9 @@ class IntensiveController extends Controller
         $searchModel = new IntensiveSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+//        $thematics = ArrayHelper::index(Thematics::find()->asArray()->all(), "id");
+        $thematics = Thematics::find()->all();
+        return $this->render('index', compact('searchModel', 'dataProvider', 'thematics'));
     }
 
     /**

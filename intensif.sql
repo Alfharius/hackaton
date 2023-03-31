@@ -42,7 +42,7 @@ CREATE TABLE `forms` (
 CREATE TABLE `intensives` (
   `id` int NOT NULL,
   `name` int NOT NULL,
-  `decription` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `lector_id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 

@@ -9,7 +9,7 @@ use Yii;
  *
  * @property int $id
  * @property int $name
- * @property string $decription
+ * @property string $description
  * @property int $lector_id
  *
  * @property IntensivesThematics[] $intensivesThematics
@@ -34,9 +34,9 @@ class Intensive extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'decription', 'lector_id'], 'required'],
+            [['name', 'description', 'lector_id'], 'required'],
             [['lector_id'], 'integer'],
-            [['name', 'decription'], 'string'],
+            [['name', 'description'], 'string'],
             [['lector_id'], 'exist', 'skipOnError' => true, 'targetClass' => Users::className(), 'targetAttribute' => ['lector_id' => 'id']],
         ];
     }
@@ -49,7 +49,7 @@ class Intensive extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'name' => 'Name',
-            'decription' => 'Decription',
+            'description' => 'description',
             'lector_id' => 'Lector ID',
         ];
     }

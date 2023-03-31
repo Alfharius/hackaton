@@ -20,7 +20,7 @@ class IntensiveSearch extends Intensive
         return [
             [['lector_id'], 'integer'],
             [['name'], 'string'],
-            [['id', 'decription'], 'safe'],
+            [['id', 'description'], 'safe'],
         ];
     }
 
@@ -63,14 +63,20 @@ class IntensiveSearch extends Intensive
             'lector_id' => $this->lector_id,
         ]);
 
-        if (!empty($params["thematic_id"])){
+        if (!empty($params["lectorName"])) {
+            $query
+                ->leftJoin('users u', "$tableName.lector_id = u.id")
+                ->andWhere(['like', 'u.name', "{$params['lectorName']}"]);
+        }
+
+        if (!empty($params["thematic_id"])) {
             $query
                 ->leftJoin('intensives_thematics it', "$tableName.id = it.intensive_id")
-                ->leftJoin(Thematics::tableName().' tm', "it.thematic_id = tm.id")
+                ->leftJoin(Thematics::tableName() . ' tm', "it.thematic_id = tm.id")
                 ->andWhere(['tm.id' => $params["thematic_id"]]);
         }
 
-        $query->andFilterWhere(['like', 'decription', $this->decription]);
+        $query->andFilterWhere(['like', 'description', $this->description]);
 
         return $dataProvider;
     }
