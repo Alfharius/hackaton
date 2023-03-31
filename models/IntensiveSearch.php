@@ -2,7 +2,6 @@
 
 namespace app\models;
 
-use app\models\Intensive;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 
@@ -60,10 +59,7 @@ class IntensiveSearch extends Intensive
         // grid filtering conditions
         $query->andFilterWhere([
             'name' => $this->name,
-            'lector_id' => $this->lector_id,
         ]);
-
-
 
         if (!empty($params["lectorName"])) {
             $query

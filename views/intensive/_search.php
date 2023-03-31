@@ -21,10 +21,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'name') ?>
 
-    <?= $form->field($model, 'description') ?>
-
-<!--    --><?php
-/*    echo Html::label('Лектор', 'lectorName');
+    <?php
+    echo Html::label('Лектор', 'lectorName');
     echo Html::dropDownList('lectorName',null, $lectors, [
             'id'=>'lectorName',
             'prompt' => [
@@ -33,7 +31,7 @@ use yii\widgets\ActiveForm;
                 'value' => '0'
             ]
         ],
-    ]) */?>
+    ]) ?>
 
     <?= Html::radioList('thematic_id', null, $thematics, [
         'class' => 'btn-group',

@@ -45,11 +45,8 @@ class IntensiveController extends Controller
         $searchModel = new IntensiveSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
-//        $thematics = ArrayHelper::index(Thematics::find()->asArray()->all(), "id");
         $thematics = Thematics::find()->all();
-        $lectors = ArrayHelper::index(Users::find()->select(['id', 'name'])->where(['type' => Users::TYPE_LECTOR])->asArray()->all(),  function ($element) {
-            return $element['name'];
-        });
+        $lectors = ArrayHelper::map(Users::find()->select(['id', 'name'])->where(['type' => Users::TYPE_LECTOR])->asArray()->all(),  'id', 'name');
         return $this->render('index',
             compact('searchModel', 'dataProvider',
                 'thematics', 'lectors'));
