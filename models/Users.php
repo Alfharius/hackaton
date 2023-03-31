@@ -16,6 +16,9 @@ use yii\web\IdentityInterface;
  */
 class Users extends \yii\db\ActiveRecord implements IdentityInterface
 {
+    const TYPE_LECTOR = 0;
+    const TYPE_DEFAULT = 1;
+
     /**
      * {@inheritdoc}
      */

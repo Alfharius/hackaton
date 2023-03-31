@@ -5,9 +5,9 @@ use yii\widgets\ActiveForm;
 
 /** @var yii\web\View $this */
 /** @var app\models\IntensiveSearch $model */
-/** @var array $thematics */
 /** @var yii\widgets\ActiveForm $form */
-?>
+/** @var \app\models\Thematics[] $thematics */
+/** @var \app\models\Users[] $lectors */?>
 
 <div class="intensive-search">
 
@@ -23,11 +23,17 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'description') ?>
 
-    <?php
-    echo Html::label('Лектор', 'lectorName');
-    echo Html::input('text','lectorName', null, [
-            'id'=>'lectorName'
-    ]) ?>
+<!--    --><?php
+/*    echo Html::label('Лектор', 'lectorName');
+    echo Html::dropDownList('lectorName',null, $lectors, [
+            'id'=>'lectorName',
+            'prompt' => [
+            'text' => 'Лектор',
+            'options' => [
+                'value' => '0'
+            ]
+        ],
+    ]) */?>
 
     <?= Html::radioList('thematic_id', null, $thematics, [
         'class' => 'btn-group',

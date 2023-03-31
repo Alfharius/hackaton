@@ -10,7 +10,8 @@ use yii\widgets\Pjax;
 /** @var yii\web\View $this */
 /** @var app\models\IntensiveSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
-/** @var array $thematics */
+/** @var \app\models\Thematics[] $thematics */
+/** @var \app\models\Users[] $lectors */
 
 $this->title = 'Intensives';
 $this->params['breadcrumbs'][] = $this->title;
@@ -24,7 +25,11 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
 
     <?php Pjax::begin(); ?>
-    <?php echo $this->render('_search', ['model' => $searchModel, 'thematics' => $thematics]); ?>
+    <?php echo $this->render('_search', [
+        'model' => $searchModel,
+        'thematics' => $thematics,
+        'lectors' => $lectors
+    ]); ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

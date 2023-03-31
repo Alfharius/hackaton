@@ -2,9 +2,9 @@
 
 namespace app\models;
 
+use app\models\Intensive;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Intensive;
 
 /**
  * IntensiveSearch represents the model behind the search form of `app\models\Intensive`.
@@ -40,9 +40,9 @@ class IntensiveSearch extends Intensive
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params, $query = null)
     {
-        $query = Intensive::find();
+        $query = $query ?? Intensive::find();
         $tableName = Intensive::tableName();
         // add conditions that should always apply here
 
@@ -63,6 +63,8 @@ class IntensiveSearch extends Intensive
             'lector_id' => $this->lector_id,
         ]);
 
+
+
         if (!empty($params["lectorName"])) {
             $query
                 ->leftJoin('users u', "$tableName.lector_id = u.id")
@@ -79,5 +81,14 @@ class IntensiveSearch extends Intensive
         $query->andFilterWhere(['like', 'description', $this->description]);
 
         return $dataProvider;
+    }
+
+    public function searchByUser($user_id, $params): ActiveDataProvider
+    {
+        $tableName = Intensive::tableName();
+        $query = Intensive::find()
+            ->leftJoin('users_forms_intensives ufi', "$tableName.id = ufi.intensive_id")
+            ->where(['ufi.user_id' => $user_id]);
+        return $this->search($params, $query);
     }
 }

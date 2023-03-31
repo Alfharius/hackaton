@@ -5,10 +5,12 @@ namespace app\controllers;
 use app\models\Intensive;
 use app\models\IntensiveSearch;
 use app\models\Thematics;
+use app\models\Users;
 use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\User;
 
 /**
  * IntensiveController implements the CRUD actions for Intensive model.
@@ -45,7 +47,27 @@ class IntensiveController extends Controller
 
 //        $thematics = ArrayHelper::index(Thematics::find()->asArray()->all(), "id");
         $thematics = Thematics::find()->all();
-        return $this->render('index', compact('searchModel', 'dataProvider', 'thematics'));
+        $lectors = ArrayHelper::index(Users::find()->select(['id', 'name'])->where(['type' => Users::TYPE_LECTOR])->asArray()->all(),  function ($element) {
+            return $element['name'];
+        });
+        return $this->render('index',
+            compact('searchModel', 'dataProvider',
+                'thematics', 'lectors'));
+    }
+
+    public function actionMy(): string
+    {
+        $searchModel = new IntensiveSearch();
+        $dataProvider = $searchModel->searchByUser(\Yii::$app->session->id, $this->request->queryParams);
+
+//        $thematics = ArrayHelper::index(Thematics::find()->asArray()->all(), "id");
+        $thematics = Thematics::find()->all();
+        $lectors = ArrayHelper::index(Users::find()->select(['id', 'name'])->where(['type' => Users::TYPE_LECTOR])->asArray()->all(),  function ($element) {
+            return $element['name'];
+        });
+        return $this->render('index',
+            compact('searchModel', 'dataProvider',
+                'thematics', 'lectors'));
     }
 
     /**
