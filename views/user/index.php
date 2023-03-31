@@ -1,46 +1,32 @@
 <?php
 
 use app\models\Intensive;
-use yii\helpers\Url;
-use yii\grid\ActionColumn;
-use yii\grid\GridView;
 
 /* @var $this yii\web\View */
+/* @var $intensives Intensive */
 
-$this->title = 'IntensIF | '.Yii::$app->user->identity->name;
+$this->title = 'IntensIF | ' . Yii::$app->user->identity->name;
 $this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <div class="users-index">
 
-    <h1>Мои интенсивы</h1>
+    <h2>Мои интенсивы</h2>
+
+    <?php if (Yii::$app->user->identity->isAdmin()) echo \yii\helpers\Html::a(\yii\helpers\Html::submitInput('Создать интенсив'))?>
 
     <div class="d-flex f-w-wrap jc-sa">
-
-        <a href="" class="intensiv-block">
-            <img src="../images/img.png" alt="">
-            <p class="date">дата и время</p>
-            <h5>Заг1</h5>
-            <p class="descript">Description</p>
-        </a>
+        <?php
+        foreach ($intensives as $intensive) {
+            echo \yii\helpers\Html::a('
+                <img src="../imgs/img.png" alt="">
+                <h4>'.$intensive->name.'</h4>
+                <p class="date">дата и время</p>
+                <p class="descript">'.$intensive->description.'</p>
+                ', ['intensive/view', 'id' => $intensive->id]);
+        } ?>
 
 
     </div>
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'name',
-            'description:ntext',
-            'lector_id',
-            [
-                'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, Intensive $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'id' => $model->id]);
-                }
-            ],
-        ],
-    ]); ?>
 
 </div>

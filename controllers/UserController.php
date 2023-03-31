@@ -3,8 +3,11 @@
 namespace app\controllers;
 
 use app\models\Intensive;
+use app\models\IntensiveSearch;
+use app\models\Thematics;
 use app\models\Users;
 use yii\data\ActiveDataProvider;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -39,9 +42,16 @@ class UserController extends Controller
      */
     public function actionIndex()
     {
-        $intensives = '';
-
-        return $this->render('index');
+        $intensives = [];
+        if (!\Yii::$app->user->identity->isAdmin()) {
+            foreach (\Yii::$app->user->identity->userIntensives as $intensive) {
+                $intensives [] = Intensive::findOne($intensive->intensive_id);
+            }
+        } else {
+            $intensives = Intensive::find()->where(['lector_id' => \Yii::$app->user->identity->id])->all();
+        }
+        return $this->render('index',
+            compact('intensives'));
     }
 
     /**
