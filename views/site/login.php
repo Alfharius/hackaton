@@ -21,14 +21,14 @@ $this->params['breadcrumbs'][] = $this->title;
         'fieldConfig' => [
             'labelOptions' => ['class' => 'col-lg-1 col-form-label mr-lg-3'],
             'inputOptions' => ['class' => 'col-lg-3 form-control'],
-            'errorOptions' => ['class' => 'col-lg-7 invalid-feedback'],
+            'errorOptions' => ['class' => 'col-lg-7 validate-error'],
         ],
     ]); ?>
 
     <?= $form->field($model, 'email')->textInput(['autofocus' => true]) ?>
-
+    <br>
     <?= $form->field($model, 'password')->passwordInput() ?>
-
+    <br>
     <?= Html::submitInput('Логин', ['name' => 'login-button']) ?>
 
     <?php ActiveForm::end(); ?>

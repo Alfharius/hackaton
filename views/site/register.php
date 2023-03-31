@@ -19,7 +19,7 @@ $this->title = 'Регистрация';
         'fieldConfig' => [
             'labelOptions' => ['class' => 'col-lg-1 col-form-label mr-lg-3'],
             'inputOptions' => ['class' => 'col-lg-3 form-control'],
-            'errorOptions' => ['class' => 'col-lg-7 invalid-feedback'],
+            'errorOptions' => ['class' => 'col-lg-7 validate-error'],
         ],
     ]); ?>
 
@@ -27,8 +27,26 @@ $this->title = 'Регистрация';
 
     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
 
+
+    <div>
+        <label for="password"  class="password">Придумайте пароль</label><br>
+        <div class="password">
+            <input type="password" id="password-input" name="password" required>
+            <a href="#" class="password-control" onclick="return show_hide_password(this);"></a>
+        </div>
+    </div>
+    <div>
+        <label for="password_confirm" class="password">Повторите пароль</label><br>
+        <div class="password">
+            <input type="password" id="password-input-2" name="password_confirm" required>
+            <a href="#" class="password-control-2" onclick="return show_hide_password_2(this);"></a>
+        </div>
+    </div>
+
     <?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'password_repeat')->passwordInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'checkbox')->checkbox(['maxlength' => true]) ?>
 
     <?= Html::submitInput('Зарегестрироваться', ['class' => 'btn btn-success']) ?>
     <?php ActiveForm::end(); ?>

@@ -14,7 +14,7 @@ use Yii;
  *
  * @property IntensivesThematics[] $intensivesThematics
  * @property Users $lector
- * @property Schedules[] $schedules
+ * @property Schedule[] $schedules
  * @property UserIntensives[] $userIntensives
  * @property UsersFormsIntensives[] $usersFormsIntensives
  */
@@ -81,7 +81,7 @@ class Intensive extends \yii\db\ActiveRecord
      */
     public function getSchedules()
     {
-        return $this->hasMany(Schedules::className(), ['intensive_id' => 'id']);
+        return $this->hasMany(Schedule::className(), ['intensive_id' => 'id']);
     }
 
     /**

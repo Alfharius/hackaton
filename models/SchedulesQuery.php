@@ -5,7 +5,7 @@ namespace app\models;
 /**
  * This is the ActiveQuery class for [[Schedules]].
  *
- * @see Schedules
+ * @see Schedule
  */
 class SchedulesQuery extends \yii\db\ActiveQuery
 {
@@ -16,7 +16,7 @@ class SchedulesQuery extends \yii\db\ActiveQuery
 
     /**
      * {@inheritdoc}
-     * @return Schedules[]|array
+     * @return Schedule[]|array
      */
     public function all($db = null)
     {
@@ -25,7 +25,7 @@ class SchedulesQuery extends \yii\db\ActiveQuery
 
     /**
      * {@inheritdoc}
-     * @return Schedules|array|null
+     * @return Schedule|array|null
      */
     public function one($db = null)
     {

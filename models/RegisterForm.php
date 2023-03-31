@@ -10,6 +10,7 @@ class RegisterForm extends Model
     public $email;
     public $password;
     public $password_repeat;
+    public $checkbox;
 
     /**
      * {@inheritdoc}
@@ -20,6 +21,7 @@ class RegisterForm extends Model
             [['name', 'email', 'password', 'password_repeat'], 'required'],
             [['name', 'email', 'password'], 'string', 'max' => 256],
             [['name'], 'match', 'pattern' => '/^([a-zA-Z]|\d|-)+$/'],
+            ['checkbox', 'compare', 'compareValue'=>1],
             /*
             ['login', 'match', 'pattern' => '/^([а-яА-Я]|ё|Ё| |-)+$/'],
             */
@@ -40,6 +42,7 @@ class RegisterForm extends Model
             'email' => 'E-mail',
             'password' => 'Пароль',
             'password_repeat' => 'Повторите пароль',
+            'checkbox' => 'Я соглашаюсь с обработкой персональных данных'
         ];
     }
 }
