@@ -16,7 +16,7 @@ use Yii;
  *
  * @property Intensive $intensive
  */
-class Schedules extends \yii\db\ActiveRecord
+class Schedule extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
