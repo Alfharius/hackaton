@@ -58,7 +58,7 @@ class IntensiveSearch extends Intensive
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'name' => $this->name,
+            "$tableName.name" => $this->name,
             'lector_id' => $this->lector_id,
         ]);
 
