@@ -123,7 +123,7 @@ class Users extends \yii\db\ActiveRecord implements IdentityInterface
      */
     public function getIntensives()
     {
-        return $this->hasMany(Intensives::className(), ['lector_id' => 'id']);
+        return $this->hasMany(Intensive::className(), ['lector_id' => 'id']);
     }
 
     /**

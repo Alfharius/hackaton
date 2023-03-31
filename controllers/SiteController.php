@@ -139,4 +139,32 @@ class SiteController extends Controller
     {
         return $this->render('where');
     }
+
+    public function sendEmail($to, $subject, $message = "")
+    {
+        // отправка мыла
+    }
+
+    function generateImage($color, $text) {
+        $image = imagecreatetruecolor(512, 512); // create a new image with dimensions 512x512
+        $bg_color = imagecolorallocate($image, $color[0], $color[1], $color[2]); // set the background color
+        imagefill($image, 0, 0, $bg_color); // fill the image with the background color
+
+        $text_color = imagecolorallocate($image, 255, 255, 255); // set the text color to white
+        $font_size = 48; // set the font size
+        $font_path = 'arial.ttf'; // set the font path
+        $text_box = imagettfbbox($font_size, 0, $font_path, $text); // get the bounding box of the text
+        $text_width = abs($text_box[2] - $text_box[0]); // get the width of the text
+
+        // center the text horizontally and vertically
+        $x = (512 - $text_width) / 2;
+        $y = (512 + $font_size) / 2;
+
+        imagettftext($image, $font_size, 0, $x, $y, $text_color, $font_path, $text); // add the text to the image
+
+        header('Content-Type: image/png'); // set the content type to PNG
+        imagepng($image); // output the image as PNG
+
+        imagedestroy($image); // free up memory
+    }
 }

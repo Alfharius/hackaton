@@ -5,7 +5,7 @@ namespace app\models;
 /**
  * This is the ActiveQuery class for [[Intensives]].
  *
- * @see Intensives
+ * @see Intensive
  */
 class IntensivesQuery extends \yii\db\ActiveQuery
 {
@@ -16,7 +16,7 @@ class IntensivesQuery extends \yii\db\ActiveQuery
 
     /**
      * {@inheritdoc}
-     * @return Intensives[]|array
+     * @return Intensive[]|array
      */
     public function all($db = null)
     {
@@ -25,7 +25,7 @@ class IntensivesQuery extends \yii\db\ActiveQuery
 
     /**
      * {@inheritdoc}
-     * @return Intensives|array|null
+     * @return Intensive|array|null
      */
     public function one($db = null)
     {

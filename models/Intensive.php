@@ -18,7 +18,7 @@ use Yii;
  * @property UserIntensives[] $userIntensives
  * @property UsersFormsIntensives[] $usersFormsIntensives
  */
-class Intensives extends \yii\db\ActiveRecord
+class Intensive extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
@@ -35,8 +35,8 @@ class Intensives extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'decription', 'lector_id'], 'required'],
-            [['name', 'lector_id'], 'integer'],
-            [['decription'], 'string'],
+            [['lector_id'], 'integer'],
+            [['name', 'decription'], 'string'],
             [['lector_id'], 'exist', 'skipOnError' => true, 'targetClass' => Users::className(), 'targetAttribute' => ['lector_id' => 'id']],
         ];
     }

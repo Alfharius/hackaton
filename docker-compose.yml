@@ -5,30 +5,31 @@ services:
     volumes:
       - ~/.composer-docker/cache:/root/.composer/cache:delegated
       - ./:/app:delegated
+      - ./docker/php/php.ini:/usr/local/etc/php/php.ini
+      - ./docker/php/local-conf.d/:/usr/local/etc/php/local-conf.d/
     ports:
       - '8080:80'
     networks:
       sail:
         aliases:
           - localhost
-    expose:
-      - '8080'
 
   db:
-    image: mysql:5.7.22
+    image: mysql:8.0.30
     container_name: db
     restart: unless-stopped
-    tty: true
     ports:
-      - '3306:3306'
+      - "3306:3306"
+    expose:
+      - 3306
     environment:
-      MYSQL_ALLOW_EMPTY_PASSWORD: yes
-      MYSQL_ROOT_HOST: localhost
-      MYSQL_DATABASE: test_base
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: intensive
+      MYSQL_USER: tuneyadec
+      MYSQL_PASSWORD: tuneyadec
     volumes:
       - './drip_chip.sql:/docker-entrypoint-initdb.d/drip_chip.sql'
+      - dbdata:/var/lib/mysql
 
     networks:
       sail:

@@ -10,7 +10,7 @@ use Yii;
  * @property int $user_id
  * @property int $intensive_id
  *
- * @property Intensives $intensive
+ * @property Intensive $intensive
  * @property Users $user
  */
 class UserIntensives extends \yii\db\ActiveRecord
@@ -32,7 +32,7 @@ class UserIntensives extends \yii\db\ActiveRecord
             [['user_id', 'intensive_id'], 'required'],
             [['user_id', 'intensive_id'], 'integer'],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => Users::className(), 'targetAttribute' => ['user_id' => 'id']],
-            [['intensive_id'], 'exist', 'skipOnError' => true, 'targetClass' => Intensives::className(), 'targetAttribute' => ['intensive_id' => 'id']],
+            [['intensive_id'], 'exist', 'skipOnError' => true, 'targetClass' => Intensive::className(), 'targetAttribute' => ['intensive_id' => 'id']],
         ];
     }
 
@@ -54,7 +54,7 @@ class UserIntensives extends \yii\db\ActiveRecord
      */
     public function getIntensive()
     {
-        return $this->hasOne(Intensives::className(), ['id' => 'intensive_id']);
+        return $this->hasOne(Intensive::className(), ['id' => 'intensive_id']);
     }
 
     /**
