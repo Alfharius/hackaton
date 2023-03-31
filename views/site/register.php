@@ -31,20 +31,19 @@ $this->title = 'Регистрация';
     <div>
         <label for="password"  class="password">Придумайте пароль</label><br>
         <div class="password">
-            <input type="password" id="password-input" name="password" required>
+            <input type="password" id="password-input" name="RegisterForm[password]" required>
             <a href="#" class="password-control" onclick="return show_hide_password(this);"></a>
         </div>
     </div>
+
     <div>
         <label for="password_confirm" class="password">Повторите пароль</label><br>
         <div class="password">
-            <input type="password" id="password-input-2" name="password_confirm" required>
+            <input type="password" id="password-input-2" name="RegisterForm[password_confirm]" required>
             <a href="#" class="password-control-2" onclick="return show_hide_password_2(this);"></a>
         </div>
     </div>
 
-    <?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
-    <?= $form->field($model, 'password_repeat')->passwordInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'checkbox')->checkbox(['maxlength' => true]) ?>
 

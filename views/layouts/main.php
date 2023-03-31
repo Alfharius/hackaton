@@ -76,8 +76,13 @@ AppAsset::register($this);
 </section>
 
 <footer>
-    <div class="w-1270 in-center container">
-
+    <div class="w-1270 in-center container ">
+        <h4>Контакты</h4>
+        <div class="contacts-cont">
+            <div class="contacts">VK</div>
+            <div class="contacts">FB</div>
+            <div class="contacts">TG</div>
+        </div>
     </div>
 </footer>
 
