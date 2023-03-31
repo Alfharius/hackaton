@@ -1,0 +1,39 @@
+tables:
+  users:
+    - id
+    - email
+    - password
+
+  intensives:
+    - id
+
+  users_intensives:
+    - user_id
+    - thematic_id
+
+  thematics:
+    - id
+    - name
+
+  intensives_thematics:
+    - intensive_id
+    - thematic_it
+
+  schedules:
+    - id
+    - name
+    - description
+    - start_time
+    - end_time
+    - intensive_id
+
+  forms:
+    - id
+
+  users_forms_intensives:
+    - user_id
+    - form_id
+    - intensive_id
+
+  news:
+    status: living

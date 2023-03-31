@@ -1,0 +1,38 @@
+*users
+id
+name
+surname
+patronymic
+login
+email
+password
+role
+
+*products
+id
+name sort
+price sort
+year sort
+category filter
+count
+country
+model
+img
+created_at
+
+*category
+id
+name
+
+*orders
+id
+user_id
+status
+note
+created_at
+
+*orders_products
+id
+order_id
+product_id
+count
