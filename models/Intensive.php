@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "intensives".
@@ -11,6 +12,7 @@ use Yii;
  * @property int $name
  * @property string $description
  * @property int $lector_id
+ * @property string|UploadedFile $img
  *
  * @property IntensivesThematics[] $intensivesThematics
  * @property Users $lector
@@ -38,6 +40,7 @@ class Intensive extends \yii\db\ActiveRecord
             [['lector_id'], 'integer'],
             [['name', 'description'], 'string'],
             [['lector_id'], 'exist', 'skipOnError' => true, 'targetClass' => Users::className(), 'targetAttribute' => ['lector_id' => 'id']],
+            ['img', 'file']
         ];
     }
 
@@ -111,5 +114,24 @@ class Intensive extends \yii\db\ActiveRecord
     public static function find()
     {
         return new IntensivesQuery(get_called_class());
+    }
+
+    public function upload(): bool
+    {
+        $this->img = UploadedFile::getInstance($this, 'img');
+        if (!empty($this->img)) {
+            if ($this->validate()){
+                $name = Yii::$app->security->generateRandomString(32) . '.' . $this->img->extension;
+                if ($this->img->saveAs(Yii::$app->basePath.'/web/uploads/' . $name)){
+                    $this->img = $name;
+                    return true;
+                }
+            }
+        } else {
+            //TODO генерировать из текста и цвета
+            return true;
+        }
+
+        return false;
     }
 }
