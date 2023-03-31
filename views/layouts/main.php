@@ -66,7 +66,7 @@ AppAsset::register($this);
                 ['label' => 'Products', 'url' => ['/products/index']],
                 ['label' => 'Categories', 'url' => ['/categories/index']],
             ],
-            'visible' => (Yii::$app->user->identity && Yii::$app->user->identity->role === 1),
+            'visible' => (Yii::$app->user->identity && Yii::$app->user->identity->type === 1),
         ],
         [
             'label' => 'Login',
@@ -83,7 +83,7 @@ AppAsset::register($this);
         $items[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post', ['class' => 'form-inline'])
             . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->login . ')',
+                'Logout (' . Yii::$app->user->identity->name . ')',
                 ['class' => 'btn btn-outline-secondary logout']
             )
             . Html::endForm()

@@ -108,7 +108,7 @@ class Users extends \yii\db\ActiveRecord implements IdentityInterface
 
     public static function isAdmin(): bool
     {
-        return self::identity() && \Yii::$app->user->identity->role === 1;
+        return self::identity() && \Yii::$app->user->identity->type === 1;
     }
 
     public static function identity()
