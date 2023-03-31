@@ -24,6 +24,8 @@ $this->title = 'Регистрация';
     ]); ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'surname')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'patronymic')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
 
@@ -39,7 +41,7 @@ $this->title = 'Регистрация';
     <div>
         <label for="password_confirm" class="password">Повторите пароль</label><br>
         <div class="password">
-            <input type="password" id="password-input-2" name="RegisterForm[password_confirm]" required>
+            <input type="password" id="password-input-2" name="RegisterForm[password_repeat]" required>
             <a href="#" class="password-control-2" onclick="return show_hide_password_2(this);"></a>
         </div>
     </div>

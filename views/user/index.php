@@ -13,13 +13,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h2>Мои интенсивы</h2>
 
-    <?php if (Yii::$app->user->identity->isAdmin()) echo \yii\helpers\Html::a(\yii\helpers\Html::submitInput('Создать интенсив'))?>
+    <?php if (Yii::$app->user->identity->isAdmin()) echo \yii\helpers\Html::a(\yii\helpers\Html::submitInput('Создать интенсив'), ['/intensive/create'])?>
 
     <div class="d-flex f-w-wrap jc-sa">
         <?php
         foreach ($intensives as $intensive) {
             echo \yii\helpers\Html::a('
-                <img src="../imgs/img.png" alt="">
+                <img src="../imgs/'.$intensive->img.'" alt="">
                 <h4>'.$intensive->name.'</h4>
                 <p class="date">дата и время</p>
                 <p class="descript">'.$intensive->description.'</p>

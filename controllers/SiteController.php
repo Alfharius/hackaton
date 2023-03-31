@@ -110,6 +110,8 @@ class SiteController extends Controller
             $data = $form->attributes;
             $user = new Users([
                 'name' => $data['name'],
+                'surname' => $data['surname'],
+                'patronymic' => $data['patronymic'],
                 'email' => $data['email'],
                 'password' => Yii::$app->getSecurity()->generatePasswordHash($data['password']),
             ]);

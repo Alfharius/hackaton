@@ -33,9 +33,9 @@ class Users extends \yii\db\ActiveRecord implements IdentityInterface
     public function rules(): array
     {
         return [
-            [['name', 'email', 'password'], 'required'],
+            [['name', 'surname', 'email', 'password'], 'required'],
             [['type'], 'integer'],
-            [['name', 'email', 'password'], 'string', 'max' => 256],
+            [['name', 'surname', 'patronymic', 'email', 'password'], 'string', 'max' => 256],
         ];
     }
 

@@ -13,7 +13,6 @@ use yii\widgets\ActiveForm;
 /** @var \app\models\Users[] $lectors */
 
 $thematics = Thematics::find()->all();
-$lectors = ArrayHelper::map(Users::find()->select(['id', 'name'])->where(['type' => Users::TYPE_LECTOR])->asArray()->all(),  'id', 'name');
 ?>
 
 
@@ -28,18 +27,6 @@ $lectors = ArrayHelper::map(Users::find()->select(['id', 'name'])->where(['type'
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
     <?= $form->field($model, 'img')->fileInput() ?>
-
-    <?php
-    echo Html::label('Лектор', 'lectorName');
-    echo $form->field($model, 'lector_id')->dropDownList($lectors, [
-        'id'=>'lectorName',
-        'prompt' => [
-            'text' => 'Лектор',
-            'options' => [
-                'value' => '0'
-            ]
-        ],
-    ]) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

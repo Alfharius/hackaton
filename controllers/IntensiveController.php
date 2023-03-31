@@ -86,6 +86,7 @@ class IntensiveController extends Controller
     {
         $model = new Intensive();
 
+        $model->lector_id = \Yii::$app->user->identity->id;
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->upload()) {
                 $model->save(false);

@@ -7,6 +7,9 @@ use yii\base\Model;
 class RegisterForm extends Model
 {
     public $name;
+    public $surname;
+
+    public $patronymic;
     public $email;
     public $password;
     public $password_repeat;
@@ -18,13 +21,9 @@ class RegisterForm extends Model
     public function rules(): array
     {
         return [
-            [['name', 'email', 'password', 'password_repeat'], 'required'],
-            [['name', 'email', 'password'], 'string', 'max' => 256],
-            [['name'], 'match', 'pattern' => '/^([a-zA-Z]|\d|-)+$/'],
+            [['name', 'surname', 'email', 'password', 'password_repeat'], 'required'],
+            [['name', 'surname', 'patronymic', 'email', 'password'], 'string', 'max' => 256],
             ['checkbox', 'compare', 'compareValue'=>1],
-            /*
-            ['login', 'match', 'pattern' => '/^([а-яА-Я]|ё|Ё| |-)+$/'],
-            */
             [['email'], 'unique', 'targetClass' => Users::class],
             ['email', 'email'],
             ['password', 'string', 'min' => 6],
@@ -38,7 +37,9 @@ class RegisterForm extends Model
     public function attributeLabels(): array
     {
         return [
+            'surname' => 'Фамилия',
             'name' => 'Имя',
+            'patronymic' => 'Отчество',
             'email' => 'E-mail',
             'password' => 'Пароль',
             'password_repeat' => 'Повторите пароль',
