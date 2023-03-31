@@ -2,10 +2,13 @@
 
 namespace app\controllers;
 
+use app\models\Forms;
 use app\models\Intensive;
+use app\models\IntensiveRegisterForm;
 use app\models\IntensiveSearch;
 use app\models\Thematics;
 use app\models\Users;
+use app\models\UsersFormsIntensives;
 use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -46,7 +49,7 @@ class IntensiveController extends Controller
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         $thematics = Thematics::find()->all();
-        $lectors = ArrayHelper::map(Users::find()->select(['id', 'name'])->where(['type' => Users::TYPE_LECTOR])->asArray()->all(),  'id', 'name');
+        $lectors = ArrayHelper::map(Users::find()->select(['id', 'name'])->where(['type' => Users::TYPE_LECTOR])->asArray()->all(), 'id', 'name');
         return $this->render('index',
             compact('searchModel', 'dataProvider',
                 'thematics', 'lectors'));
@@ -58,7 +61,7 @@ class IntensiveController extends Controller
         $dataProvider = $searchModel->searchByUser(\Yii::$app->session->id, $this->request->queryParams);
 
         $thematics = Thematics::find()->all();
-        $lectors = ArrayHelper::map(Users::find()->select(['id', 'name'])->where(['type' => Users::TYPE_LECTOR])->asArray()->all(),  'id', 'name');
+        $lectors = ArrayHelper::map(Users::find()->select(['id', 'name'])->where(['type' => Users::TYPE_LECTOR])->asArray()->all(), 'id', 'name');
         return $this->render('index',
             compact('searchModel', 'dataProvider',
                 'thematics', 'lectors'));
@@ -128,11 +131,56 @@ class IntensiveController extends Controller
      * @return \yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
+    public function actionDelete($id): \yii\web\Response
     {
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    /**
+     * @param $id
+     * @return string|\yii\web\Response
+     */
+    public function actionRegister($id)
+    {
+        $model = $this->findModel($id);
+        if (empty($model)) {
+            return $this->redirect(['index']);
+        }
+
+        $registrationForm = new IntensiveRegisterForm();
+
+        if ($this->request->isPost) {
+            if ($registrationForm->load($this->request->post())) {
+                $json = json_encode([
+                    "phone" => $registrationForm->phone,
+                    "email" => $registrationForm->email,
+                    "institution" => $registrationForm->institution,
+                    "about" => $registrationForm->about,
+                ]);
+                $formModel = new Forms([
+                    "name" => $model->name,
+                    "fields" => $json,
+                ]);
+                if ($formModel->save()) {
+                    $formModel->refresh();
+                    $ufi = new UsersFormsIntensives([
+                        'user_id' => \Yii::$app->user->id,
+                        'form_id' => $this->id,
+                        'intensive_id' => $id,
+                    ]);
+                    if ($ufi->save()) {
+                        return $this->redirect(['view', 'id' => $id]);
+                    }
+
+                }
+            }
+        }
+
+        return $this->render('reg_form', [
+            'model' => $registrationForm,
+        ]);
     }
 
     /**

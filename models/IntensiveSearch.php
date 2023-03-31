@@ -61,10 +61,8 @@ class IntensiveSearch extends Intensive
             'name' => $this->name,
         ]);
 
-        if (!empty($params["lectorName"])) {
-            $query
-                ->leftJoin('users u', "$tableName.lector_id = u.id")
-                ->andWhere(['like', 'u.name', "{$params['lectorName']}"]);
+        if (!empty($params["lector_id"])) {
+            $query->andWhere(['lector_id' => $params['lector_id']]);
         }
 
         if (!empty($params["thematic_id"])) {

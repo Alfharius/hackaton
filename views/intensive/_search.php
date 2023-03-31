@@ -22,10 +22,9 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'name') ?>
 
     <?php
-    echo Html::label('Лектор', 'lectorName');
-    echo Html::dropDownList('lectorName',null, $lectors, [
-            'id'=>'lectorName',
-            'prompt' => [
+    $form->field($model, 'lector_id')->dropDownList($lectors, [
+        'id'=>'lectorName',
+        'prompt' => [
             'text' => 'Лектор',
             'options' => [
                 'value' => '0'
