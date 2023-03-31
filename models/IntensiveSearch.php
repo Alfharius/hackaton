@@ -56,6 +56,10 @@ class IntensiveSearch extends Intensive
             return $dataProvider;
         }
 
+        if ($this->lector_id == 0) {
+            $this->lector_id = null;
+        }
+
         // grid filtering conditions
         $query->andFilterWhere([
             "$tableName.name" => $this->name,
