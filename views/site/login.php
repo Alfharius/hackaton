@@ -27,7 +27,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= $form->field($model, 'email')->textInput(['autofocus' => true]) ?>
     <br>
-    <?= $form->field($model, 'password')->passwordInput() ?>
+    <div>
+        <label for="password"  class="password">Придумайте пароль</label><br>
+        <div class="password">
+            <input type="password" id="password-input" name="LoginForm[password]" required>
+            <a href="#" class="password-control" onclick="return show_hide_password(this);"></a>
+        </div>
+    </div>
     <br>
     <?= Html::submitInput('Логин', ['name' => 'login-button']) ?>
 
