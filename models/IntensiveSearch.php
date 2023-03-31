@@ -11,13 +11,14 @@ use app\models\Intensive;
  */
 class IntensiveSearch extends Intensive
 {
+
     /**
      * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['lector_id', 'thematic_id'], 'integer'],
+            [['lector_id'], 'integer'],
             [['name'], 'string'],
             [['id', 'decription'], 'safe'],
         ];
@@ -42,13 +43,12 @@ class IntensiveSearch extends Intensive
     public function search($params)
     {
         $query = Intensive::find();
-
+        $tableName = Intensive::tableName();
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
-
         $this->load($params);
 
         if (!$this->validate()) {
@@ -63,9 +63,12 @@ class IntensiveSearch extends Intensive
             'lector_id' => $this->lector_id,
         ]);
 
-/*        if (isset($this->thematic_id)){
-            $query->andWhere([]);
-        }*/
+        if (!empty($params["thematic_id"])){
+            $query
+                ->leftJoin('intensives_thematics it', "$tableName.id = it.intensive_id")
+                ->leftJoin(Thematics::tableName().' tm', "it.thematic_id = tm.id")
+                ->andWhere(['tm.id' => $params["thematic_id"]]);
+        }
 
         $query->andFilterWhere(['like', 'decription', $this->decription]);
 

@@ -65,14 +65,14 @@ if (true) {
     $config['modules']['debug'] = [
         'class' => 'yii\debug\Module',
         // uncomment the following to add your IP if you are not connecting from localhost.
-        'allowedIPs' => ['172.23.0.1', '::8080'],
+        'allowedIPs' => [$_SERVER["REMOTE_ADDR"], '::8080'],
     ];
 
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
         // uncomment the following to add your IP if you are not connecting from localhost.
-        'allowedIPs' => ['172.23.0.1', '::8080'],
+        'allowedIPs' => [$_SERVER["REMOTE_ADDR"], '::8080'],
     ];
 }
 
