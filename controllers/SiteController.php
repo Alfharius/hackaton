@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\News;
 use app\models\ProductsSearch;
 use app\models\RegisterForm;
 use app\models\Users;
@@ -64,7 +65,10 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $news = News::find()->all();
+        return $this->render('index', [
+            'news' => $news
+        ]);
     }
 
     /**

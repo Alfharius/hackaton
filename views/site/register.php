@@ -7,10 +7,9 @@ use yii\bootstrap4\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model RegisterForm */
 /* @var $form yii\widgets\ActiveForm */
-$this->title = 'Register';
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'Регистрация';
 ?>
-<div>
+<div class="w-1270 in-center">
     <h1><?= Html::encode($this->title) ?></h1>
     <?php \yii\widgets\Pjax::begin([
         'formSelector' => '#register-form',
