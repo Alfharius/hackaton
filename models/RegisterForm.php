@@ -36,10 +36,10 @@ class RegisterForm extends Model
     public function attributeLabels(): array
     {
         return [
-            'name' => 'Name',
-            'email' => 'Email',
-            'password' => 'Password',
-            'password_repeat' => 'Password repeat',
+            'name' => 'Имя',
+            'email' => 'E-mail',
+            'password' => 'Пароль',
+            'password_repeat' => 'Повторите пароль',
         ];
     }
 }

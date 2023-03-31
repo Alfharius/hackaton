@@ -74,4 +74,12 @@ class LoginForm extends Model
 
         return $this->_user;
     }
+
+    public function attributeLabels(): array
+    {
+        return [
+            'email' => 'E-mail',
+            'password' => 'Пароль'
+        ];
+    }
 }

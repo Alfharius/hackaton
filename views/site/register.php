@@ -9,7 +9,6 @@ use yii\bootstrap4\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 $this->title = 'Регистрация';
 ?>
-<div class="w-1270 in-center">
     <h1><?= Html::encode($this->title) ?></h1>
     <?php \yii\widgets\Pjax::begin([
         'formSelector' => '#register-form',
@@ -18,7 +17,6 @@ $this->title = 'Регистрация';
         'id' => 'register-form',
         'layout' => 'horizontal',
         'fieldConfig' => [
-            'template' => "{label}\n{input}\n{error}",
             'labelOptions' => ['class' => 'col-lg-1 col-form-label mr-lg-3'],
             'inputOptions' => ['class' => 'col-lg-3 form-control'],
             'errorOptions' => ['class' => 'col-lg-7 invalid-feedback'],
@@ -32,10 +30,6 @@ $this->title = 'Регистрация';
     <?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'password_repeat')->passwordInput(['maxlength' => true]) ?>
 
-    <div class="form-group">
-        <?= Html::submitButton('Register', ['class' => 'btn btn-success']) ?>
-    </div>
-
+    <?= Html::submitInput('Зарегестрироваться', ['class' => 'btn btn-success']) ?>
     <?php ActiveForm::end(); ?>
     <?php \yii\widgets\Pjax::end() ?>
-</div>

@@ -69,11 +69,11 @@ AppAsset::register($this);
 </header>
 <div class="navbar-light"></div>
 
-<main role="main" class="flex-shrink-0">
-    <div class="container">
+<section>
+    <div class="w-1270 in-center container">
         <?= $content ?>
     </div>
-</main>
+</section>
 
 <footer>
     <div class="w-1270 in-center container">

@@ -7,9 +7,5 @@
 use app\models\News;
 use yii\bootstrap4\Carousel;
 
-$this->title = 'Главная';
+$this->title = 'Intensif';
 ?>
-<div class="site-index">
-
-        <?php var_dump($news);?>
-</div>
