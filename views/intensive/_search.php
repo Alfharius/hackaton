@@ -45,8 +45,8 @@ use yii\widgets\ActiveForm;
     ]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Reset', ['class' => 'btn btn-outline-secondary']) ?>
+        <?= Html::submitInput('Search') ?>
+        <?= Html::resetInput('Reset') ?>
     </div>
 
     <?php ActiveForm::end(); ?>
