@@ -13,16 +13,11 @@ use yii\widgets\Pjax;
 /** @var \app\models\Thematics[] $thematics */
 /** @var \app\models\Users[] $lectors */
 
-$this->title = 'Intensives';
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'Интенсивы';
 ?>
 <div class="intensive-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a('Create Intensive', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
 
     <?php Pjax::begin(); ?>
     <?php echo $this->render('_search', [
@@ -31,24 +26,20 @@ $this->params['breadcrumbs'][] = $this->title;
         'lectors' => $lectors
     ]); ?>
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+    <div class="d-flex f-w-wrap jc-sa">
+        <?php
+        $intensives = $dataProvider->query->all();
+        foreach ($intensives as $intensive) {
+            echo \yii\helpers\Html::a('
+                <img src="uploads/'.$intensive->img.'" alt="">
+                <h4>'.$intensive->name.'</h4>
+                <p class="date">дата и время</p>
+                <p class="descript">'.$intensive->description.'</p>
+                ', ['intensive/view', 'id' => $intensive->id]);
+        }
+        ?>
+    </div>
 
-            'id',
-            'name',
-            'description:ntext',
-            'lector_id',
-            [
-                'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, Intensive $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'id' => $model->id]);
-                }
-            ],
-        ],
-    ]); ?>
 
     <?php Pjax::end(); ?>
 

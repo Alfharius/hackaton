@@ -39,7 +39,7 @@ AppAsset::register($this);
         </div>
         <nav>
             <?= Html::a('Главная', ['/site/index'])?>
-            <?= Html::a('Интенсивы', ['/site/index'])?>
+            <?= Html::a('Интенсивы', ['/intensive/index'])?>
             <a href="">Планы</a>
         </nav>
         <div class="hamburger-menu ">

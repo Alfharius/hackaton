@@ -28,6 +28,7 @@ $thematics = Thematics::find()->all();
 
     <?= $form->field($model, 'img')->fileInput() ?>
 
+
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>

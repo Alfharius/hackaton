@@ -31,12 +31,15 @@ use yii\widgets\ActiveForm;
         ],
     ]) ?>
 
-    <?= Html::radioList('thematic_id', null, $thematics, [
-        'class' => 'btn-group',
+
+    <?php
+    echo Html::label('Название тематики', 'thematic_id');
+    echo Html::checkboxList('thematic_id', null, $thematics, [
+        'class' => 'd-flex d-col',
         'data-toggle' => 'buttons',
         'item' => function ($index, $thematic, $name, $checked) {
-            return '<label class="btn btn-primary' . ($checked ? ' active' : '') . '">' .
-                Html::radio($name, $checked, ['value' => $thematic->id, 'class' => 'project-status-btn']) . $thematic->name . '</label>';
+            return '<label class="' . ($checked ? ' active' : '') . '">' . $thematic->name . '</label>' .
+                Html::checkbox($name, $checked, ['value' => $thematic->id, 'class' => 'project-status-btn']) ;
         },
 //        'onchange' => "$('#search-form')[0].submit()"
     ]) ?>
