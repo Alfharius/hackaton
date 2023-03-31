@@ -9,12 +9,10 @@ use yii\web\IdentityInterface;
  *
  * @property int $id
  * @property string $name
- * @property string $surname
- * @property string|null $patronymic
  * @property string $login
  * @property string $email
  * @property string $password
- * @property int $role
+ * @property int $type
  */
 class Users extends \yii\db\ActiveRecord implements IdentityInterface
 {
@@ -32,9 +30,9 @@ class Users extends \yii\db\ActiveRecord implements IdentityInterface
     public function rules(): array
     {
         return [
-            [['name', 'surname', 'login', 'email', 'password'], 'required'],
-            [['role'], 'integer'],
-            [['name', 'surname', 'patronymic', 'login', 'email', 'password'], 'string', 'max' => 256],
+            [['name', 'email', 'password'], 'required'],
+            [['type'], 'integer'],
+            [['name', 'login', 'email', 'password'], 'string', 'max' => 256],
         ];
     }
 
@@ -46,12 +44,9 @@ class Users extends \yii\db\ActiveRecord implements IdentityInterface
         return [
             'id' => 'ID',
             'name' => 'Name',
-            'surname' => 'Surname',
-            'patronymic' => 'Patronymic',
-            'login' => 'Login',
             'email' => 'Email',
             'password' => 'Password',
-            'role' => 'Role',
+            'type' => 'Type',
         ];
     }
 
@@ -119,5 +114,35 @@ class Users extends \yii\db\ActiveRecord implements IdentityInterface
     public static function identity()
     {
         return \Yii::$app->user->identity;
+    }
+
+    /**
+     * Gets query for [[Intensives]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getIntensives()
+    {
+        return $this->hasMany(Intensives::className(), ['lector_id' => 'id']);
+    }
+
+    /**
+     * Gets query for [[UserIntensives]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUserIntensives()
+    {
+        return $this->hasMany(UserIntensives::className(), ['user_id' => 'id']);
+    }
+
+    /**
+     * Gets query for [[UsersFormsIntensives]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUsersFormsIntensives()
+    {
+        return $this->hasMany(UsersFormsIntensives::className(), ['user_id' => 'id']);
     }
 }
