@@ -84,9 +84,7 @@ class SiteController extends Controller
         }
 
         $model->password = '';
-        return $this->render('login', [
-            'model' => $model,
-        ]);
+        return $this->render('index');
     }
 
     /**
@@ -105,17 +103,13 @@ class SiteController extends Controller
             $data = $form->attributes;
             $user = new Users([
                 'name' => $data['name'],
-                'surname' => $data['surname'],
-                'patronymic' => $data['patronymic'],
-                'login' => $data['login'],
                 'email' => $data['email'],
-                'password' => $data['password'],
+                'password' => Yii::$app->getSecurity()->generatePasswordHash($data['password']),
             ]);
             if ($user->save()) {
                 return $this->redirect(['login']);
             }
         }
-
         return $this->render('register', [
             'model' => $form,
         ]);

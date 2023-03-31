@@ -7,21 +7,9 @@ use yii\base\Model;
 class RegisterForm extends Model
 {
     public $name;
-    public $surname;
-    public $patronymic;
-    public $login;
     public $email;
     public $password;
     public $password_repeat;
-    public $rules;
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function tableName(): string
-    {
-        return 'users';
-    }
 
     /**
      * {@inheritdoc}
@@ -29,15 +17,16 @@ class RegisterForm extends Model
     public function rules(): array
     {
         return [
-            [['name', 'surname', 'login', 'email', 'password', 'password_repeat'], 'required'],
-            [['name', 'surname', 'patronymic', 'login', 'email', 'password'], 'string', 'max' => 256],
-            [['name', 'surname', 'patronymic'], 'match', 'pattern' => '/^([а-яА-Я]|ё|Ё| |-)+$/'],
-            ['login', 'match', 'pattern' => '/^([a-zA-Z]|\d|-)+$/'],
-            [['login', 'email'], 'unique', 'targetClass' => Users::class],
+            [['name', 'email', 'password', 'password_repeat'], 'required'],
+            [['name', 'email', 'password'], 'string', 'max' => 256],
+            [['name'], 'match', 'pattern' => '/^([a-zA-Z]|\d|-)+$/'],
+            /*
+            ['login', 'match', 'pattern' => '/^([а-яА-Я]|ё|Ё| |-)+$/'],
+            */
+            [['email'], 'unique', 'targetClass' => Users::class],
             ['email', 'email'],
             ['password', 'string', 'min' => 6],
-            ['password_repeat', 'compare', 'compareAttribute' => 'password'],
-            ['rules', 'compare', 'compareValue' => '1', 'message'=>'Is required']
+            ['password_repeat', 'compare', 'compareAttribute' => 'password']
         ];
     }
 
@@ -47,14 +36,10 @@ class RegisterForm extends Model
     public function attributeLabels(): array
     {
         return [
-            'id' => 'ID',
             'name' => 'Name',
-            'surname' => 'Surname',
-            'patronymic' => 'Patronymic',
-            'login' => 'Login',
             'email' => 'Email',
             'password' => 'Password',
-            'role' => 'Role',
+            'password_repeat' => 'Password repeat',
         ];
     }
 }

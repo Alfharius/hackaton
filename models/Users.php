@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use Yii;
 use yii\web\IdentityInterface;
 
 /**
@@ -9,7 +10,6 @@ use yii\web\IdentityInterface;
  *
  * @property int $id
  * @property string $name
- * @property string $login
  * @property string $email
  * @property string $password
  * @property int $type
@@ -32,7 +32,7 @@ class Users extends \yii\db\ActiveRecord implements IdentityInterface
         return [
             [['name', 'email', 'password'], 'required'],
             [['type'], 'integer'],
-            [['name', 'login', 'email', 'password'], 'string', 'max' => 256],
+            [['name', 'email', 'password'], 'string', 'max' => 256],
         ];
     }
 
@@ -87,12 +87,12 @@ class Users extends \yii\db\ActiveRecord implements IdentityInterface
     /**
      * Finds user by username
      *
-     * @param string $login
+     * @param string $email
      * @return static|null
      */
-    public static function findByLogin(string $login)
+    public static function findByEmail(string $email)
     {
-        return Users::findOne(['login' => $login]) ?? null;
+        return Users::findOne(['email' => $email]) ?? null;
     }
 
     /**
@@ -103,7 +103,7 @@ class Users extends \yii\db\ActiveRecord implements IdentityInterface
      */
     public function validatePassword(string $password): bool
     {
-        return $this->password === $password;
+        return Yii::$app->getSecurity()->validatePassword($password, $this->password);
     }
 
     public static function isAdmin(): bool

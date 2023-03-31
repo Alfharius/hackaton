@@ -8,12 +8,12 @@ use yii\base\Model;
 /**
  * LoginForm is the model behind the login form.
  *
- * @property-read UserOld|null $user
+ * @property-read Users|null $user
  *
  */
 class LoginForm extends Model
 {
-    public $login;
+    public $email;
     public $password;
 
     private $_user = false;
@@ -26,7 +26,9 @@ class LoginForm extends Model
     {
         return [
             // username and password are both required
-            [['login', 'password'], 'required'],
+            [['email'], 'unique', 'targetClass' => Users::class],
+            ['email', 'email'],
+            [['password'], 'required'],
             // password is validated by validatePassword()
             ['password', 'validatePassword'],
         ];
@@ -69,7 +71,7 @@ class LoginForm extends Model
     public function getUser()
     {
         if ($this->_user === false) {
-            $this->_user = Users::findByLogin($this->login);
+            $this->_user = Users::findByEmail($this->email);
         }
 
         return $this->_user;
