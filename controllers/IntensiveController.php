@@ -189,7 +189,7 @@ class IntensiveController extends Controller
         ]);
     }
 
-    public function actionAddSchedule($id)
+    public function actionAddSchedule($id): \yii\web\Response
     {
         $schedule = new Schedule();
         if ($this->request->isPost) {
@@ -205,7 +205,7 @@ class IntensiveController extends Controller
      * @throws \Throwable
      * @throws StaleObjectException
      */
-    public function actionRemoveSchedule($id, $schedule_id)
+    public function actionRemoveSchedule($id, $schedule_id): \yii\web\Response
     {
         $schedule = $this->findModel($id)->getSchedules()->where(['id' => $schedule_id])->one();
         if (!empty($schedule) && $this->request->isPost) {
