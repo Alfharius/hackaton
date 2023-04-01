@@ -2,13 +2,16 @@
 
 namespace app\controllers;
 
+use app\models\AddScheduleForm;
 use app\models\Forms;
 use app\models\Intensive;
 use app\models\IntensiveRegisterForm;
 use app\models\IntensiveSearch;
+use app\models\Schedule;
 use app\models\Thematics;
 use app\models\Users;
 use app\models\UsersFormsIntensives;
+use yii\db\StaleObjectException;
 use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -184,6 +187,31 @@ class IntensiveController extends Controller
         return $this->render('reg_form', [
             'model' => $registrationForm,
         ]);
+    }
+
+    public function actionAddSchedule($id)
+    {
+        $schedule = new Schedule();
+        if ($this->request->isPost) {
+            if ($schedule->load($this->request->post())) {
+                $schedule->intensive_id = $id;
+                $schedule->save();
+            }
+        }
+        return $this->redirect(['view', 'id' => $id]);
+    }
+
+    /**
+     * @throws \Throwable
+     * @throws StaleObjectException
+     */
+    public function actionRemoveSchedule($id, $schedule_id)
+    {
+        $schedule = $this->findModel($id)->getSchedules()->where(['id' => $schedule_id])->one();
+        if (!empty($schedule) && $this->request->isPost) {
+            $schedule->delete();
+        }
+        return $this->redirect(['view', 'id' => $id]);
     }
 
     /**
