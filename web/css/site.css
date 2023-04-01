@@ -69,8 +69,12 @@ footer h4 {
     color: white;
     text-align: center;
 }
-input:hover {
+
+a input:hover{
     cursor: pointer;
+}
+
+input:hover {
     background: #ff6543;
     transition: 0.5s ease-in-out;
 }
