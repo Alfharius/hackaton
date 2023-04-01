@@ -64,7 +64,7 @@ class Schedule extends \yii\db\ActiveRecord
     public function getStartTime(): string
     {
        $date = date_create($this->start_time);
-        return   date_format($date, 'm.d H:i');
+        return   date_format($date, 'd.m H:i');
     }
 
     /**
