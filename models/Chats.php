@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "chats".
@@ -77,5 +78,24 @@ class Chats extends \yii\db\ActiveRecord
     public function getUser()
     {
         return $this->hasOne(Users::class, ['id' => 'user_id']);
+    }
+
+    public function upload(): bool
+    {
+        $file = UploadedFile::getInstance($this, 'img');
+        if (!empty($file)) {
+            if ($this->validate()){
+                $name = Yii::$app->security->generateRandomString(32) . '.' . $this->img->extension;
+                if ($file->saveAs(Yii::$app->basePath.'/web/uploads/' . $name)){
+                    $uploaded = new Uploads([
+                        "hash" => $name,
+                    ]);
+                    $uploaded->save();
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 }

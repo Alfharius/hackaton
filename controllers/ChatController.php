@@ -126,6 +126,18 @@ class ChatController extends Controller
         return $this->redirect(['index']);
     }
 
+    public function actionUpload($id)
+    {
+        $model = $this->findModel($id);
+        if ($this->request->isPost) {
+            if ($model->load($this->request->post()) && $model->upload()) {
+                $model->save(false);
+            }
+        }
+
+        return $this->redirect(['index']);
+    }
+
     /**
      * Finds the Chats model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
