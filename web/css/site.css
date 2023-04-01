@@ -73,7 +73,9 @@ footer h4 {
 a input:hover{
     cursor: pointer;
 }
-
+input[type=submit]:hover{
+    cursor: pointer;
+}
 input:hover {
     background: #ff6543;
     transition: 0.5s ease-in-out;
