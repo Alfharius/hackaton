@@ -26,10 +26,29 @@ $this->title = 'Intensif';
 <div class="hr"></div>
 <section>
     <div class="w-1270 in-center container">
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum harum molestias, voluptates dolor quasi ratione quidem iste dolore reiciendis iure, dolores commodi. Enim minima velit dolorum mollitia molestias nostrum amet!</p>
+        <h3>О нашей деятельности</h3>
+        <p class="mt-40">Хотите развиваться, но не знаете с чего начать? Приходите и получите реальный опыт, которым мы готовы поделиться вне зависимости от Ваших профессиональных навыков.
+            Ждем начинающих специалистов, которым интересно получить знания по следующим направлениям: бэкэнд- или фронтэнд-разработка, машинное обучение, мобильная разработка, функциональное тестирование.
+        </p>
     </div>
-
+</section>
+<div class="hr"></div>
+<section>
+    <div class="w-1270 in-center container">
+        <h2 style="text-align: center;">Направления обучения</h2>
+        <div class="list-napr mt-40">
+            <h3>Разработка приложений</h3>
+            <p>Имеете опыт работы с одной из промышленных систем управления базами данных: Microsoft SQL Server, PostgrеSQL, Oracle и т.п.; не менее 3 лет программируете на С#,T-SQL, JavaScript, HTML, технологии ASP.NET, NET. Framework, AJAX (владеете одним или сразу несколькими вышеуказанными языками программирования); имеете знания среды разработки Microsoft Visual Studio 2005.</p>
+        </div>
+        <div class="list-napr mt-40">
+            <h3>Бизнес-анализ</h3>
+            <p>Имеете опыт работы с одной из промышленных систем управления базами данных: Microsoft SQL Server, PostgrеSQL, Oracle и т.п.; не менее 3 лет программируете на С#,T-SQL, JavaScript, HTML, технологии ASP.NET, NET. Framework, AJAX (владеете одним или сразу несколькими вышеуказанными языками программирования); имеете знания среды разработки Microsoft Visual Studio 2005.</p>
+        </div>
+        <div class="list-napr mt-40">
+            <h3>Информационная безопасность</h3>
+            <p>Имеете опыт работы с одной из промышленных систем управления базами данных: Microsoft SQL Server, PostgrеSQL, Oracle и т.п.;</p>
+        </div>
+    </div>
 </section>
 <div class="hr"></div>
 
-<div class="hr"></div>
