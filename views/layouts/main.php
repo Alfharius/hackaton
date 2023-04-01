@@ -50,7 +50,7 @@ AppAsset::register($this);
             <ul class="menu-box">
                 <li><a class="menu-item" href="index.html">Главная</a></li>
                 <li><a class="menu-item" href="">Интенсивы</a></li>
-                <li><a class="menu-item" href="">Планы</a></li>
+                <li><a class="menu-item" href="">Календарь</a></li>
             </ul>
         </div>
 
@@ -61,7 +61,7 @@ AppAsset::register($this);
         </div>
         <?php } else {?>
         <div class="d-flex jc-sb lk">
-            <?=Html::a('<input type="button" value="'.Yii::$app->user->identity->name.'">', ['/user/index'])?>
+            <?=Html::a('<input type="button" value="Мои интенсивы">', ['/user/index'])?>
             <?php echo Html::a('<input type="submit" value="Выход">', ['/site/logout'], ['data-method' => 'post']) ?>
         </div>
         <?php }?>

@@ -44,7 +44,7 @@ class UserController extends Controller
     {
         $intensives = [];
         if (!\Yii::$app->user->identity->isAdmin()) {
-            foreach (\Yii::$app->user->identity->userIntensives as $intensive) {
+            foreach (\Yii::$app->user->identity->usersFormsIntensives as $intensive) {
                 $intensives [] = Intensive::findOne($intensive->intensive_id);
             }
         } else {
