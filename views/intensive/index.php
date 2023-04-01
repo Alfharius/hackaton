@@ -30,10 +30,12 @@ $this->title = 'Интенсивы';
         <?php
         $intensives = $dataProvider->query->all();
         foreach ($intensives as $intensive) {
+            if (array_key_exists(0, $intensive->schedules)) {$string = $intensive->schedules[0]->getStartTime();}
+            else $string = 'empty';
             echo \yii\helpers\Html::a('
                 <img class="int-img" src="uploads/'.$intensive->img.'" alt="">
                 <h4>'.$intensive->name.'</h4>
-                <p class="date">дата и время</p>
+                <p class="date">'.$string.'</p>
                 <p class="descript">'.$intensive->description.'</p>
                 ', ['intensive/view', 'id' => $intensive->id], ['class' => 'intensiv-block']);
         }
