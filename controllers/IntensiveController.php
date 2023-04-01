@@ -207,7 +207,7 @@ class IntensiveController extends Controller
      */
     public function actionRemoveSchedule($id, $schedule_id)
     {
-        $schedule = Schedule::find()->where(['id' => $schedule_id])->one();
+        $schedule = $this->findModel($id)->getSchedules()->where(['id' => $schedule_id])->one();
         if (!empty($schedule) && $this->request->isPost) {
             $schedule->delete();
         }
