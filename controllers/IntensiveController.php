@@ -167,7 +167,7 @@ class IntensiveController extends Controller
                     $formModel->refresh();
                     $ufi = new UsersFormsIntensives([
                         'user_id' => \Yii::$app->user->id,
-                        'form_id' => $this->id,
+                        'form_id' => $formModel->id,
                         'intensive_id' => $id,
                     ]);
                     if ($ufi->save()) {
