@@ -72,6 +72,5 @@ $this->title = $model->name;
 
     </div>
     <div class="overlay js-overlay-modal"></div>
-    <script src="/js/modal-windows.js"></script>
 
 </div>
