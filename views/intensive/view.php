@@ -29,16 +29,14 @@ $this->title = $model->name;
     <p>Лектор: <?= $model->lector->name . ' ' . $model->lector->surname . ' ' . $model->lector->patronymic ?></p>
 
     <p>План интенсива:</p>
-    <?php
-    foreach ($schedules as $schedule) {
-        ?>
+    <?php $user = Yii::$app->user->identity;
+
+    foreach ($model->schedules as $schedule) {?>
         <p class="plan"><?= $schedule->getStartTime() ?> — <?= $schedule->getEndTime() ?>. <?= $schedule->name ?></p>
-        <?php
-    }
-    ?>
+    <?php } ?>
     <p class="descript"><?= $model->description ?></p>
     <?php
-    $user = Yii::$app->user->identity;
+
     if (!is_null($user) &&
     !\app\models\UsersFormsIntensives::find()->where(['intensive_id' => $model->id])->andWhere(['user_id' => $user->id])->exists() &&
     !Yii::$app->user->identity->isAdmin()){
