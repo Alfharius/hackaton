@@ -62,7 +62,7 @@ AppAsset::register($this);
         <?php } else {?>
         <div class="d-flex jc-sb lk">
             <?=Html::a('<input type="button" value="'.Yii::$app->user->identity->name.'">', ['/user/index'])?>
-            <?php echo Html::a('<input type="submit" value="Выход" data-method="post">', ['/site/logout'], ['data-method' => 'post']) ?>
+            <?php echo Html::a('<input type="submit" value="Выход">', ['/site/logout'], ['data-method' => 'post']) ?>
         </div>
         <?php }?>
     </div>
