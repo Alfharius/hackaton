@@ -62,9 +62,12 @@ class IntensiveSearch extends Intensive
 
         // grid filtering conditions
         $query->andFilterWhere([
-            "$tableName.name" => $this->name,
             'lector_id' => $this->lector_id,
         ]);
+
+        if (!empty($this->name)){
+            $query->andWhere(['like', "$tableName.name", $this->name]);
+        }
 
         if (!empty($params["thematic_id"])) {
             $query
