@@ -20,11 +20,11 @@ $this->params['breadcrumbs'][] = $this->title;
         if (count($intensives) == 0) echo '<div class="mt-180">Здесь пока ничего нет. Запишитесь на интенсив)</div>';
         foreach ($intensives as $intensive) {
             echo \yii\helpers\Html::a('
-                <img src="uploads/'.$intensive->img.'" alt="">
+                <img class="int-img" src="uploads/'.$intensive->img.'" alt="">
                 <h4>'.$intensive->name.'</h4>
                 <p class="date">дата и время</p>
                 <p class="descript">'.$intensive->description.'</p>
-                ', ['intensive/view', 'id' => $intensive->id]);
+                ', ['intensive/view', 'id' => $intensive->id], ['class' => 'intensiv-block']);
         } ?>
 
 

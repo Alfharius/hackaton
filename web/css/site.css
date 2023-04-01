@@ -327,7 +327,7 @@ span::after {
 
 
 .intensiv-block {
-    width: 200px;
+    width: 400px;
 }
 .intensiv-block img {
     width: 100%;
@@ -380,7 +380,9 @@ span::after {
     transition: 0.5s;
 }
 .info-intensiv img {
-    width: 500px;
+    object-fit: cover;
+    width: 50%;
+    height: 400px;
 }
 .info-intensiv p {
     font-size: 24px;
@@ -515,6 +517,11 @@ span::after {
     }
 }
 @media (max-width: 768px) {
+    .info-intensiv img {
+        object-fit: cover;
+        width: 100%;
+        height: auto;
+    }
     .w-1270 {
         width: 100%;
     }

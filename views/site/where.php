@@ -4,18 +4,151 @@
 
 use yii\helpers\Html;
 
-$this->title = 'Где нас найти?';
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'Календарь интенсивов';
 ?>
 <div>
-    <h1><?= Html::encode($this->title) ?></h1>
-    <b>Адрес:</b> ул. Социалистической революции, д. 17 <br>
-    <b>Телефон:</b> 71822041870 <br>
-    <b>email:</b> schizoidgada@yandex.com <br>
-    <?= yii\bootstrap4\Accordion::widget([
-        'items' => [
-            'Карта' => (\yii\bootstrap4\Html::img('imgs/map.png', ['width' => '100%'])),
-        ],
-        'options' => ['class' => 'mt-3']
-    ]) ?>
+    <h1>Календарь</h1>
+    <h1>интенсивов</h1>
+    <section>
+        <div class="w-1270 in-center container d-flex f-w-wrap jc-sa">
+
+            <div class="month mt-40">
+                <h3 style="margin-left: 4px;">Апрель</h3>
+                <div class="days-of-week-container">
+                    <div>Пн</div>
+                    <div>Вт</div>
+                    <div>Ср</div>
+                    <div>Чт</div>
+                    <div>Пт</div>
+                    <div>Сб</div>
+                    <div>Вс</div>
+                </div>
+                <div class="calendar-container april">
+                    <div><a href="">1</a></div>
+                    <div><a href="">2</a></div>
+                    <div><a href="">3</a></div>
+                    <div><a href="">4</a></div>
+                    <div><a href="">5</a></div>
+                    <div><a href="">6</a></div>
+                    <div><a href="">7</a></div>
+                    <div><a href="">8</a></div>
+                    <div><a href="">9</a></div>
+                    <div><a href="">10</a></div>
+                    <div><a href="">11</a></div>
+                    <div><a href="">12</a></div>
+                    <div><a href="">13</a></div>
+                    <div><a href="">14</a></div>
+                    <div><a href="">15</a></div>
+                    <div><a href="">16</a></div>
+                    <div><a href="">17</a></div>
+                    <div><a href="">18</a></div>
+                    <div><a href="">19</a></div>
+                    <div><a href="">20</a></div>
+                    <div><a href="">21</a></div>
+                    <div><a href="">22</a></div>
+                    <div><a href="">23</a></div>
+                    <div><a href="">24</a></div>
+                    <div><a href="">25</a></div>
+                    <div><a href="">26</a></div>
+                    <div><a href="">27</a></div>
+                    <div><a href="">28</a></div>
+                    <div><a href="">29</a></div>
+                    <div><a href="">30</a></div>
+                </div>
+            </div>
+
+            <div class="month mt-40">
+                <h3 style="margin-left: 4px;">Май</h3>
+                <div class="days-of-week-container">
+                    <div>Пн</div>
+                    <div>Вт</div>
+                    <div>Ср</div>
+                    <div>Чт</div>
+                    <div>Пт</div>
+                    <div>Сб</div>
+                    <div>Вс</div>
+                </div>
+                <div class="calendar-container may">
+                    <div><a href="">1</a></div>
+                    <div><a href="">2</a></div>
+                    <div><a href="">3</a></div>
+                    <div><a href="">4</a></div>
+                    <div><a href="">5</a></div>
+                    <div><a href="">6</a></div>
+                    <div><a href="">7</a></div>
+                    <div><a href="">8</a></div>
+                    <div><a href="">9</a></div>
+                    <div><a href="">10</a></div>
+                    <div><a href="">11</a></div>
+                    <div><a href="">12</a></div>
+                    <div><a href="">13</a></div>
+                    <div><a href="">14</a></div>
+                    <div><a href="">15</a></div>
+                    <div><a href="">16</a></div>
+                    <div><a href="">17</a></div>
+                    <div><a href="">18</a></div>
+                    <div><a href="">19</a></div>
+                    <div><a href="">20</a></div>
+                    <div><a href="">21</a></div>
+                    <div><a href="">22</a></div>
+                    <div><a href="">23</a></div>
+                    <div><a href="">24</a></div>
+                    <div><a href="">25</a></div>
+                    <div><a href="">26</a></div>
+                    <div><a href="">27</a></div>
+                    <div><a href="">28</a></div>
+                    <div><a href="">29</a></div>
+                    <div><a href="">30</a></div>
+                    <div><a href="">31</a></div>
+                </div>
+            </div>
+
+            <div class="month mt-40">
+                <h3 style="margin-left: 4px;">Июнь</h3>
+                <div class="days-of-week-container">
+                    <div>Пн</div>
+                    <div>Вт</div>
+                    <div>Ср</div>
+                    <div>Чт</div>
+                    <div>Пт</div>
+                    <div>Сб</div>
+                    <div>Вс</div>
+                </div>
+                <div class="calendar-container june">
+                    <div><a href="">1</a></div>
+                    <div><a href="">2</a></div>
+                    <div><a href="">3</a></div>
+                    <div><a href="">4</a></div>
+                    <div><a href="">5</a></div>
+                    <div><a href="">6</a></div>
+                    <div><a href="">7</a></div>
+                    <div><a href="">8</a></div>
+                    <div><a href="">9</a></div>
+                    <div><a href="">10</a></div>
+                    <div><a href="">11</a></div>
+                    <div><a href="">12</a></div>
+                    <div><a href="">13</a></div>
+                    <div><a href="">14</a></div>
+                    <div><a href="">15</a></div>
+                    <div><a href="">16</a></div>
+                    <div><a href="">17</a></div>
+                    <div><a href="">18</a></div>
+                    <div><a href="">19</a></div>
+                    <div><a href="">20</a></div>
+                    <div><a href="">21</a></div>
+                    <div><a href="">22</a></div>
+                    <div><a href="">23</a></div>
+                    <div><a href="">24</a></div>
+                    <div><a href="">25</a></div>
+                    <div><a href="">26</a></div>
+                    <div><a href="">27</a></div>
+                    <div><a href="">28</a></div>
+                    <div><a href="">29</a></div>
+                    <div><a href="">30</a></div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <div class="hr"></div>
 </div>

@@ -17,7 +17,7 @@ $this->title = $model->name;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <img src="uploads/<?= $model->img ?>" alt="">
+    <img class="w-100" src="uploads/<?= $model->img ?>" alt="">
     <p>Тематики интенсива: <?php
         foreach ($model->intensivesThematics as $key => $thematic) {
             if (!array_key_exists($key + 1, $model->intensivesThematics)) {
@@ -38,7 +38,7 @@ $this->title = $model->name;
     } ?>
     <p class="descript"><?= $model->description ?></p>
     <?php
-    echo Html::a('Добавить пункт плана', ['intensives/add-schedule', 'id' => $model->id]);
+    echo Html::a('Добавить пункт плана', ['/intensive/add-schedule', 'id' => $model->id]);
     if (!is_null($user) &&
         !\app\models\UsersFormsIntensives::find()->where(['intensive_id' => $model->id])->andWhere(['user_id' => $user->id])->exists() &&
         !Yii::$app->user->identity->isAdmin()) {
@@ -50,34 +50,36 @@ $this->title = $model->name;
             </svg>
             <div class="intensive-form">
 
-                <?php $form = ActiveForm::begin([
-                    'id' => 'register-form',
-                    'layout' => 'horizontal',
-                    'action' => '/index.php?r=intensive%2Fregister&id=' . $model->id,
-                    'fieldConfig' => [
-                        'errorOptions' => ['class' => 'col-lg-7 validate-error'],
-                    ],
-                ]);
-                $model = new IntensiveRegisterForm();
-                ?>
+            <?php $form = ActiveForm::begin([
+                'id' => 'register-form',
+                'layout' => 'horizontal',
+                'action' => '/index.php?r=intensive%2Fregister&id='.$model->id,
+                'fieldConfig' => [
+                    'errorOptions' => ['class' => 'col-lg-7 validate-error'],
+                ],
+            ]);
+            $formModel = new IntensiveRegisterForm();
+            ?>
 
-                <?= $form->field($model, 'phone')->textInput() ?>
+            <?= $form->field($formModel, 'phone')->textInput() ?>
 
-                <?= $form->field($model, 'email')->input('email') ?>
+            <?= $form->field($formModel, 'email')->input('email') ?>
 
-                <?= $form->field($model, 'institution')->textInput() ?>
+            <?= $form->field($formModel, 'institution')->textInput() ?>
 
-                <?= $form->field($model, 'about')->textarea(['rows' => 6]) ?>
+            <?= $form->field($formModel, 'about')->textarea(['rows' => 6]) ?>
 
-                <div class="form-group">
-                    <?= Html::submitInput('Отправить') ?>
-                </div>
-
-                <?php ActiveForm::end(); ?>
-
+            <div class="form-group">
+                <?= Html::submitInput('Отправить') ?>
             </div>
 
+            <?php ActiveForm::end(); ?>
+
         </div>
-        <div class="overlay js-overlay-modal"></div>
-    <?php } ?>
+
+    </div>
+    <div class="overlay js-overlay-modal"></div>
+    <?php }?>
+
+    <?php echo Html::a(Html::submitInput('Перейти в чат'), ['/intensive/chat'])?>
 </div>

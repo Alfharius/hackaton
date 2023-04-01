@@ -51,4 +51,22 @@ $this->title = 'Intensif';
     </div>
 </section>
 <div class="hr"></div>
+<section>
+    <div class="w-1270 in-center container">
+        <h2 style="text-align: center;">Последние новости</h2>
+        <?php
+        $i = 1;
+        foreach ($news as $new) {
+            echo
+            '<div class="news mt-40">
+                '.\yii\helpers\Html::img("uploads/".$new->picture).'
+                <h3>'.$new->title.'</h3>
+                <p>'.$new->description.'</p>
+            </div>';
+            if ($i >= 3) break;
+            $i++;
+        }?>
+    </div>
+</section>
+<div class="hr"></div>
 
