@@ -23,6 +23,7 @@ class IntensiveRegisterForm extends Model
             // email has to be a valid email address
             [['email'], 'email'],
             [['phone', 'institution', 'about'], 'string'],
+            ['phone', 'match', 'pattern' => '^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$']
         ];
     }
 
