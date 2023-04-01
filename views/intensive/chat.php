@@ -8,33 +8,55 @@ use yii\widgets\ActiveForm;
 
 /** @var yii\web\View $this */
 /** @var app\models\Intensive $model */
-/** @var yii\widgets\ActiveForm $form */
+/** @var app\models\Chats $chat */
 /** @var \app\models\Users[] $lectors */
 
 ?>
 
 <div class="w-1270 in-center">
     <div style="text-align: center;padding: 50px 0; background: gray;">
-        <p>Лектор</p>
+        <p><?php
+            $user = Yii::$app->user->identity;
+            if ($user->isAdmin()) {
+                echo $chat->user->name.' '.$chat->user->surname.' '.$chat->user->patronymic;
+            } else {
+                echo $model->lector->name.' '.$model->lector->surname.' '.$model->lector->patronymic;
+            }
+            ?></p>
     </div>
-    <div class="d-flex jc-sb" style="background: white; padding: 50px;" >
-        <div>
-            <div style="text-align: left;  color: black; padding: 20px; width: 30%;">gfgfgfgfg</div>
-            <div style="  padding: 50px; width: 30%;"></div>
-            <div style="text-align: left; color: black; padding: 20px; width: 30%;">rtrtrtrrtrt</div>
-            <div style="  padding: 50px; width: 30%;"></div>
-        </div>
-        <div>
-            <div style="  padding: 50px; width: 30%;"></div>
-            <div style=" text-align: right; color: black; padding: 20px; width: 30%;">nnbnbnbnb</div>
-            <div style="  padding: 50px; width: 30%;"></div>
-            <div style="text-align: right; color: black; padding: 20px; width: 30%;">dsdsdsddsdsd</div>
-        </div>
+    <div class="d-flex jc-sb" style='background: white; padding: 50px; flex-direction: column'>
 
+
+        <?php
+            foreach ($chat->messages as $message) {
+                if ($message->user_id != $user->id)
+                    echo '<div style="color: black; float: left; margin-right: auto">'.$message->text.'</div>';
+                else
+                    echo '<div style="color: black; float: right; margin-left: auto">'.$message->text.'</div>';
+            }
+        ?>
 
     </div>
     <div class="d-flex jc-sb" style="padding: 50px; background: gray;">
-        <input type="text" class="chat-text-input" placeholder="Напишите сообщение">
-        <input type="button" class="chat-button-input" value="Отправить">
+        <div class="intensive-form">
+
+            <?php $form = ActiveForm::begin([
+                'id' => 'register-form',
+                'action' => '/index.php?r=intensive%2Fsend&uid=' . $user->id.'&cid='.$chat->id.'&iid='.$model->id,
+                'fieldConfig' => [
+                    'errorOptions' => ['class' => 'col-lg-7 validate-error'],
+                ],
+            ]);
+            $formModel = new \app\models\MessageForm();
+            ?>
+
+            <?= $form->field($formModel, 'text')->textInput() ?>
+
+            <div class="form-group">
+                <?= Html::submitInput('Отправить') ?>
+            </div>
+
+            <?php ActiveForm::end(); ?>
+        </div>
     </div>
 </div>

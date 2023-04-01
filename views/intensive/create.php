@@ -5,9 +5,7 @@ use yii\helpers\Html;
 /** @var yii\web\View $this */
 /** @var app\models\Intensive $model */
 
-$this->title = 'Create Intensive';
-$this->params['breadcrumbs'][] = ['label' => 'Intensives', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'Создание интенсива';
 ?>
 <div class="intensive-create">
 

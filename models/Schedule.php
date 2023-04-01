@@ -33,8 +33,7 @@ class Schedule extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'decsription', 'start_time', 'end_time', 'intensive_id'], 'required'],
-            [['decsription'], 'string'],
+            [['name', 'start_time', 'end_time'], 'required'],
             [['start_time', 'end_time'], 'safe'],
             [['intensive_id'], 'integer'],
             [['name'], 'string', 'max' => 256],
@@ -50,7 +49,6 @@ class Schedule extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'name' => 'Name',
-            'decsription' => 'Decsription',
             'start_time' => 'Start Time',
             'end_time' => 'End Time',
             'intensive_id' => 'Intensive ID',
@@ -64,7 +62,7 @@ class Schedule extends \yii\db\ActiveRecord
     public function getStartTime(): string
     {
        $date = date_create($this->start_time);
-        return   date_format($date, 'd M H:i');
+        return   date_format($date, 'd M Y');
     }
 
     /**
@@ -74,7 +72,7 @@ class Schedule extends \yii\db\ActiveRecord
     public function getEndTime(): string
     {
         $date = date_create($this->end_time);
-        return   date_format($date, 'd M H:i');
+        return   date_format($date, 'd M Y');
     }
 
     /**

@@ -1,11 +1,16 @@
 tables:
   users:
     - id
+    - name
     - email
     - password
+    - type
 
   intensives:
     - id
+    - name
+    - description
+    - lector_id
 
   users_intensives:
     - user_id

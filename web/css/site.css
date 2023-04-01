@@ -142,6 +142,12 @@ footer a{
 .jc-sb {
     justify-content: space-between;
 }
+.jc-l {
+    justify-content: left;
+}
+.jc-r {
+    justify-content: right;
+}
 .jc-sa {
     justify-content: space-around;
 }

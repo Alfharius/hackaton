@@ -13,6 +13,7 @@ use yii\web\UploadedFile;
  * @property string $description
  * @property int $lector_id
  * @property string|UploadedFile $img
+ * @property array $thematics_ids
  *
  * @property IntensivesThematics[] $intensivesThematics
  * @property Users $lector
@@ -39,6 +40,7 @@ class Intensive extends \yii\db\ActiveRecord
             [['name', 'description', 'lector_id'], 'required'],
             [['lector_id'], 'integer'],
             [['name', 'description'], 'string'],
+            ['thematics_ids', 'each', 'rule' => ['integer']],
             [['lector_id'], 'exist', 'skipOnError' => true, 'targetClass' => Users::className(), 'targetAttribute' => ['lector_id' => 'id']],
             ['img', 'file']
         ];
@@ -51,9 +53,10 @@ class Intensive extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'description' => 'description',
-            'lector_id' => 'Lector ID',
+            'name' => 'Название',
+            'description' => 'Описание',
+            'lector_id' => 'Лектор',
+            'thematics_ids' => 'Тематики'
         ];
     }
 

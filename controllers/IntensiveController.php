@@ -3,10 +3,12 @@
 namespace app\controllers;
 
 use app\models\AddScheduleForm;
+use app\models\Chats;
 use app\models\Forms;
 use app\models\Intensive;
 use app\models\IntensiveRegisterForm;
 use app\models\IntensiveSearch;
+use app\models\Messages;
 use app\models\Schedule;
 use app\models\Thematics;
 use app\models\Users;
@@ -192,11 +194,13 @@ class IntensiveController extends Controller
     public function actionAddSchedule($id): \yii\web\Response
     {
         $schedule = new Schedule();
+        $request = $this->request->post('AddDateForm');
         if ($this->request->isPost) {
-            if ($schedule->load($this->request->post())) {
-                $schedule->intensive_id = $id;
-                $schedule->save();
-            }
+            $schedule->name = $request['name'];
+            $schedule->start_time = date('Y-m-d H:i:s' , strtotime($request['startTime']));
+            $schedule->end_time = date('Y-m-d H:i:s' , strtotime($request['endTime']));
+            $schedule->intensive_id = $id;
+            $schedule->save();
         }
         return $this->redirect(['view', 'id' => $id]);
     }
@@ -230,8 +234,28 @@ class IntensiveController extends Controller
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 
-    public function actionChat(): string
+    public function actionChat($uid, $iid): string
     {
-        return $this->render('chat');
+        if (!Chats::find()->where(['user_id' => $uid])->andWhere(['intensive_id' => $iid])->exists()) {
+            $chat = new Chats();
+            $chat->user_id = Users::findOne($uid)->id;
+            $chat->intensive_id = Intensive::findOne($iid)->id;
+            $chat->save();
+        } else {
+            $chat = Chats::find()->where(['user_id' => $uid])->andWhere(['intensive_id' => $iid])->one();
+        }
+        $model = Intensive::findOne($iid);
+        return $this->render('chat', compact('chat', 'model'));
+    }
+
+    public function actionSend($uid, $cid, $iid) {
+        $message = new Messages();
+        $message->user_id = $uid;
+        $message->chat_id = $cid;
+        $message->text = $this->request->post('MessageForm')['text'];
+        $message->save();
+        $chat    = Chats::findOne($cid);
+        $model = Intensive::findOne($iid);
+        return $this->render('chat', compact('chat', 'model'));
     }
 }
