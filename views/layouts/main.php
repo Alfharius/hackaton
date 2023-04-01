@@ -40,19 +40,8 @@ AppAsset::register($this);
         <nav>
             <?= Html::a('Главная', ['/site/index'])?>
             <?= Html::a('Интенсивы', ['/intensive/index'])?>
-            <a href="">Планы</a>
+            <?= Html::a('Календарь', ['/site/where'])?>
         </nav>
-        <div class="hamburger-menu ">
-            <input id="menu-toggle" type="checkbox" />
-            <label class="menu-btn" for="menu-toggle">
-                <span></span>
-            </label>
-            <ul class="menu-box">
-                <li><a class="menu-item" href="index.html">Главная</a></li>
-                <li><a class="menu-item" href="">Интенсивы</a></li>
-                <li><a class="menu-item" href="">Календарь</a></li>
-            </ul>
-        </div>
 
         <?php if (Yii::$app->user->isGuest) {?>
         <div class="d-flex jc-sb auth-lk">
