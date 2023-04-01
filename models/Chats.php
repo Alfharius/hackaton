@@ -87,14 +87,13 @@ class Chats extends \yii\db\ActiveRecord
             if ($this->validate()){
                 $name = Yii::$app->security->generateRandomString(32) . '.' . $this->img->extension;
                 if ($file->saveAs(Yii::$app->basePath.'/web/uploads/' . $name)){
-
-                    $this->img = $name;
+                    $uploaded = new Uploads([
+                        "hash" => $name,
+                    ]);
+                    $uploaded->save();
                     return true;
                 }
             }
-        } else {
-            //TODO генерировать из текста и цвета
-            return true;
         }
 
         return false;
