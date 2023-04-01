@@ -17,7 +17,7 @@ $this->title = $model->name;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <img src="uploads/<?= $model->img ?>" alt="">
+    <img class="w-100" src="uploads/<?= $model->img ?>" alt="">
     <p>Тематики интенсива: <?php
         foreach ($model->intensivesThematics as $key => $thematic) {
             if (!array_key_exists($key + 1, $model->intensivesThematics)) {

@@ -4,13 +4,12 @@
 
 use yii\helpers\Html;
 
-$this->title = 'Где нас найти?';
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'Календарь интенсивов';
 ?>
 <div>
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1>Календарь</h1>
+    <h1>интенсивов</h1>
     <section>
-        <h1>Планы</h1>
         <div class="w-1270 in-center container d-flex f-w-wrap jc-sa">
 
             <div class="month mt-40">
