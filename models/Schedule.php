@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\base\InvalidConfigException;
 
 /**
  * This is the model class for table "schedules".
@@ -54,6 +55,26 @@ class Schedule extends \yii\db\ActiveRecord
             'end_time' => 'End Time',
             'intensive_id' => 'Intensive ID',
         ];
+    }
+
+    /**
+     * @return string
+     * @throws InvalidConfigException
+     */
+    public function getStartTime(): string
+    {
+       $date = date_create($this->start_time);
+        return   date_format($date, 'H:i');
+    }
+
+    /**
+     * @return string
+     * @throws InvalidConfigException
+     */
+    public function getEndTime(): string
+    {
+        $date = date_create($this->end_time);
+        return   date_format($date, 'H:i');
     }
 
     /**

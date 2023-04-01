@@ -75,8 +75,11 @@ class IntensiveController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+        $schedules = $model->getSchedules()->all();
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'schedules' => $schedules
         ]);
     }
 
