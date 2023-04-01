@@ -69,7 +69,7 @@ AppAsset::register($this);
 </header>
 <div class="navbar-light"></div>
 
-<section>
+<section class="content">
     <div class="w-1270 in-center container">
         <?= $content ?>
     </div>

@@ -45,7 +45,11 @@ $this->title = $model->name;
         <div class="intensive-form">
 
             <?php $form = ActiveForm::begin([
-                'options' => ['enctype' => 'multipart/form-data']
+                'id' => 'register-form',
+                'layout' => 'horizontal',
+                'fieldConfig' => [
+                    'errorOptions' => ['class' => 'col-lg-7 validate-error'],
+                ],
             ]);
             $model = new IntensiveRegisterForm();
             ?>
@@ -59,7 +63,7 @@ $this->title = $model->name;
             <?= $form->field($model, 'about')->textarea(['rows' => 6]) ?>
 
             <div class="form-group">
-                <?= Html::submitButton('Отправить', ['class' => 'btn btn-success']) ?>
+                <?= Html::submitInput('Отправить') ?>
             </div>
 
             <?php ActiveForm::end(); ?>

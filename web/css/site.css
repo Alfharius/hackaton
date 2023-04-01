@@ -13,6 +13,9 @@ body {
     font-family: "Montserrat", sans-serif;
     overflow-x: hidden;
 }
+.content{
+    min-height: calc(100vh - 50px);
+}
 p { font-weight: 300; font-size: 22px;}
 .w-1270 {
     max-width: 1270px;
@@ -67,6 +70,7 @@ footer h4 {
     text-align: center;
 }
 input:hover {
+    cursor: pointer;
     background: #ff6543;
     transition: 0.5s ease-in-out;
 }
@@ -513,4 +517,7 @@ span::after {
     }
     .w-80 { width: 80%;}
     .w-20 { width: 80%; }
+}
+.validate-error {
+    color: yellow;
 }

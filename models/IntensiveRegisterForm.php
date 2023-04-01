@@ -25,4 +25,18 @@ class IntensiveRegisterForm extends Model
             [['phone', 'institution', 'about'], 'string'],
         ];
     }
+
+
+    public function attributeLabels(): array
+    {
+        return [
+            'surname' => 'Фамилия',
+            'name' => 'Имя',
+            'phone' => 'Телефона',
+            'email' => 'E-mail',
+            'institution' => 'Учебное заведение',
+            'about' => 'Раскажите о себе',
+            'checkbox' => 'Я соглашаюсь с обработкой персональных данных'
+        ];
+    }
 }

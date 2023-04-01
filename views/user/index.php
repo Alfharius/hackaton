@@ -17,6 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="d-flex f-w-wrap jc-sa">
         <?php
+        if (count($intensives) == 0) echo '<div class="mt-180">Здесь пока ничего нет. Запишитесь на интенсив)</div>';
         foreach ($intensives as $intensive) {
             echo \yii\helpers\Html::a('
                 <img src="uploads/'.$intensive->img.'" alt="">
