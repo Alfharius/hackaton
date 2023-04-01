@@ -27,13 +27,17 @@ p { font-weight: 300; font-size: 22px;}
 .container {
     padding: 0 10%;
 }
-input, select {
+input, select, textarea {
     border: solid #ff6543 2px;
     border-radius: 40px;
     padding: 10px 40px;
     background: #2d1414;
     box-shadow: 0px 0px 20px #c53c1d;
     font-size: 20px;
+}
+textarea {
+    height: 100px;
+    resize: none;
 }
 select {
     appearance: none;
@@ -248,7 +252,13 @@ span::after {
     content: '';
     top: 8px;
 }
-
+.list-napr h3 {
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: white;
+}
+.list-napr h3::before {
+    content: "►";
+}
 .menu-box {
     user-select: none;
     display: block;
@@ -443,6 +453,12 @@ span::after {
 }
 .plan {
     margin-left: 50px;
+}
+.chat-text-input {
+    width: 70%;
+}
+.chat-button-input {
+    width: 20%;
 }
 @media (max-width: 1530px) {
     .w-1270 {

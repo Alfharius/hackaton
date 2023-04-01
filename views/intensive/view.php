@@ -37,7 +37,12 @@ $this->title = $model->name;
     }
     ?>
     <p class="descript"><?= $model->description ?></p>
-    <?php if (!\app\models\UsersFormsIntensives::find()->where(['intensive_id' => $model->id])->andWhere(['user_id' => Yii::$app->user->identity->id])->exists() && !Yii::$app->user->identity->isAdmin()){ ?>
+    <?php
+    $user = Yii::$app->user->identity;
+    if (!is_null($user) &&
+    !\app\models\UsersFormsIntensives::find()->where(['intensive_id' => $model->id])->andWhere(['user_id' => $user->id])->exists() &&
+    !Yii::$app->user->identity->isAdmin()){
+        ?>
     <a href="#" class="js-open-modal" data-modal="1"><input type="button" value="Записаться на интенсив"></a>
     <div class="modal mt-180" data-modal="1">
         <svg class="modal__cross js-modal-close" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
